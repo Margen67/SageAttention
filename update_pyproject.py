@@ -7,7 +7,7 @@ import os
 with open("./pyproject.toml", "r") as f:
     text = f.read()
 
-TORCH_MINOR_VERSION = os.getenv("TORCH_MINOR_VERSION", "6")
+TORCH_MINOR_VERSION = os.getenv("TORCH_MINOR_VERSION", "8")
 TORCH_PATCH_VERSION = os.getenv("TORCH_PATCH_VERSION", "0")
 TORCH_PATCH_VERSION_NEXT = str(int(TORCH_PATCH_VERSION) + 1)
 TORCH_VERSION = f"2.{TORCH_MINOR_VERSION}.{TORCH_PATCH_VERSION}.dev0"
@@ -21,11 +21,11 @@ with open("./pyproject.toml", "w") as f:
 with open("./simpleindex.toml", "r") as f:
     text = f.read()
 
-CUDA_MINOR_VERSION = os.getenv("CUDA_MINOR_VERSION", "6")
+CUDA_MINOR_VERSION = os.getenv("CUDA_MINOR_VERSION", "9")
 if os.getenv("TORCH_IS_NIGHTLY") == "1":
-    text = text.replace("/cu126/", f"/nightly/cu12{CUDA_MINOR_VERSION}/")
+    text = text.replace("/cu129/", f"/nightly/cu12{CUDA_MINOR_VERSION}/")
 else:
-    text = text.replace("/cu126/", f"/cu12{CUDA_MINOR_VERSION}/")
+    text = text.replace("/cu129/", f"/cu12{CUDA_MINOR_VERSION}/")
 
 with open("./simpleindex.toml", "w") as f:
     f.write(text)
